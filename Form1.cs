@@ -58,8 +58,37 @@ namespace prKol_ind3_1_karamov
                 listBox1.Items.Add(arr.Array[i]);
             }
         }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(Cursor.Position);
+        }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OneArray arrnew = new OneArray();
+            if (comboBox1.Text != string.Empty)
+            {
+                OneArray arr = (OneArray)arrays[comboBox1.SelectedIndex];
+                for (int i = 0; i < arr.Array.Length; i++)
+                {
+                    arr.Array[i] = arr.Array[i] * Convert.ToInt16(numericUpDown1.Value);
+                }
+                arrnew.CreateArray(arr.Array);
+                arrays.RemoveAt(comboBox1.SelectedIndex);
+                arrays.Insert(comboBox1.SelectedIndex, arr);
+                listBox1.Items.Clear();
+                for (int i = 0; i < arr.Array.Length; i++)
+                {
+                    listBox1.Items.Add(arr.Array[i]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите массив");
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             try
             {
@@ -72,7 +101,7 @@ namespace prKol_ind3_1_karamov
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             try
             {
@@ -98,7 +127,7 @@ namespace prKol_ind3_1_karamov
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             try
             {
@@ -121,31 +150,6 @@ namespace prKol_ind3_1_karamov
             catch
             {
                 MessageBox.Show("Ошибка");
-            }
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            OneArray arrnew = new OneArray();
-            if (comboBox1.Text != string.Empty)
-            {
-                OneArray arr = (OneArray)arrays[comboBox1.SelectedIndex];
-                for (int i = 0; i < arr.Array.Length; i++)
-                {
-                    arr.Array[i] = arr.Array[i] * Convert.ToInt16(numericUpDown1.Value);
-                }
-                arrnew.CreateArray(arr.Array);
-                arrays.RemoveAt(comboBox1.SelectedIndex);
-                arrays.Insert(comboBox1.SelectedIndex, arr);
-                listBox1.Items.Clear();
-                for (int i = 0; i < arr.Array.Length; i++)
-                {
-                    listBox1.Items.Add(arr.Array[i]);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите массив");
             }
         }
     }
